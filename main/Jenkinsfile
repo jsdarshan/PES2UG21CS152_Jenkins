@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    environment {
+        // Define the name of your .cpp file
+        CPP_FILE = 'hello.cpp'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                // Compile the hello.cpp file using g++ compiler
+                sh "g++ ${CPP_FILE} -o ${CPP_FILE}.exe"
+            }
+        }
+        stage('Test') {
+            steps {
+                // Print the output of the compiled hello.cpp file
+                sh "./${CPP_FILE}.exe"
+            }
+        }
+        stage('Deploy') {
+            steps {
+                // Your deployment steps here
+                // Assuming deployment is not required for this scenario
+            }
+        }
+    }
+
+    post {
+        always {
+            // Display 'pipeline failed' in case of any errors
+            echo 'pipeline failed'
+        }
+    }
+}
