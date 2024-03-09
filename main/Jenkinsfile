@@ -10,6 +10,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Compile the hello.cpp file using g++ compiler
+                build 'PES2UG21CS152-1'
                 sh "g++ ${CPP_FILE} -o ${CPP_FILE}.exe"
             }
         }
@@ -21,6 +22,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+                echo 'deploy'
                 // Your deployment steps here
                 // Assuming deployment is not required for this scenario
             }
